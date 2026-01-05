@@ -6,7 +6,17 @@ const { getUserTrips, moveDriver } = require("../src/controllers/fetchdata");
 
 const app = express();
 
-app.use(cors({ origin: "*" }));
+app.use(
+  cors({
+    origin: [
+      process.env.FRONTEND_URL || "http://localhost:4000",
+      "http://localhost:4000"
+    ],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 app.use(express.json());
 
 // ✅ Connect DB ONCE
