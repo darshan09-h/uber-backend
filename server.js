@@ -5,7 +5,7 @@ const express = require('express');
 const cors = require('cors');
 const connectDB = require('./src/config/db');
 const Ride = require('./src/models/Ride');
-const { getUserTrips, moveDriver } = require("./src/controllers/fetchdata");
+const { getUserTrips } = require("./src/controllers/fetchdata");
 
 const app = express();
 
@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
   res.json({ message: 'Uber backend running' });
 });
 
-console.log("moveDriver type:", typeof moveDriver);
+// console.log("moveDriver type:", typeof moveDriver);
 
 // create ride
 app.post('/api/rides', async (req, res) => {
@@ -74,7 +74,7 @@ app.patch('/api/rides/:id/status', async (req, res) => {
 });
 
 app.get("/api/rides/user/:userId", getUserTrips);
-app.patch("/api/rides/:id/move-driver", moveDriver);
+// app.patch("/api/rides/:id/move-driver", moveDriver);
 
 
 
